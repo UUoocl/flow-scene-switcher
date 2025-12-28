@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBS LiteGraph Controller</title>
+    
+    <!-- LINK REMOVED: litegraph.css is now imported in main.ts -->
+    
+    <!-- Link to your build output (this handles both style.css and litegraph.css after build) -->
+    <link rel="stylesheet" href="./bundle.css">
+</head>
+<body>
+    <div class="header">
+        <button id="load" style="background: #2196F3; color: white;">Load</button>
+        <button id="save" style="background: #4CAF50; color: white;">Save</button>
+        <button id="deploy">Start Logic</button>
+        <span style="margin-left:auto; color:#ccc;">
+            Status: <b id="status" style="color: orange;">Connecting...</b>
+        </span>
+    </div>
+
+    <div id="editor-container">
+        <canvas id="main-canvas"></canvas>
+    </div>
+
+    <!-- ... (Rest of your Modals: Save, Load, Connection) ... -->
+
+    <!-- SAVE MODAL -->
+    <div id="saveModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Save Flow</h2>
+                <span class="close-btn" id="closeSave">&times;</span>
+            </div>
+            
+            <div class="modal-row">
+                <label class="modal-label">Filename</label>
+                <input type="text" id="saveFilename" class="modal-input" placeholder="enter-name-here">
+            </div>
+
+            <div class="modal-row">
+                <label class="modal-label">Destination</label>
+                <select id="saveSource" class="modal-input">
+                    <option value="obsidian">Obsidian (Host Server)</option>
+                    <option value="local">Browser Local Storage</option>
+                </select>
+            </div>
+
+            <div class="modal-footer">
+                <button id="cancelSave" style="background:#555; color:white;">Cancel</button>
+                <button id="confirmSave" style="background:#4CAF50; color:white;">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOAD MODAL -->
+    <div id="loadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Load Flow</h2>
+                <span class="close-btn" id="closeLoad">&times;</span>
+            </div>
+            
+            <div class="source-tabs">
+                <button class="tab-btn active" data-source="obsidian">Obsidian</button>
+                <button class="tab-btn" data-source="local">Local Storage</button>
+            </div>
+
+            <div id="fileList">
+                <div style="padding:10px; color:#aaa;">Select a source to view files.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONNECTION PROMPT MODAL -->
+    <div id="connectionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>OBS Connection</h2>
+            </div>
+            <div id="connectionError" style="color: #ff9800; margin-bottom: 15px; display: none;"></div>
+            
+            <div class="modal-row">
+                <label class="modal-label">Port</label>
+                <input type="text" id="connectPort" class="modal-input" value="4455">
+            </div>
+
+            <div class="modal-row">
+                <label class="modal-label">Password</label>
+                <input type="password" id="connectPassword" class="modal-input" placeholder="enter password here">
+            </div>
+
+            <div class="modal-footer">
+                <button id="connectBtn" style="background:#2196F3; color:white;">Connect</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./bundle.js"></script>
+</body>
+</html>

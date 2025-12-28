@@ -1,0 +1,8 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/**/*.ts", "src/**/*.svelte"],
+  "out": "docs",
+  "name": "Flow Scene Switcher - Documentation",
+  "readme": "README.md",
+  "theme": "default"
+}
