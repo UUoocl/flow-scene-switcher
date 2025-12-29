@@ -16,6 +16,11 @@
   }
 
   let { data }: { data: WatchData } = $props();
+  let isEditingTitle = $state(false);
+
+  $effect(() => {
+      if (!data.label) data.label = "Watch";
+  });
 
   // The GraphRunner will update data.value when it executes/evaluates
 </script>
@@ -24,7 +29,23 @@
   <Handle type="target" position={Position.Left} id="input" class="!bg-yellow-500 !w-3 !h-3" />
 
   <div class="node-header bg-yellow-100 border-yellow-200">
-    <span class="title text-yellow-900">Watch</span>
+    {#if isEditingTitle}
+      <input 
+          type="text" 
+          bind:value={data.label} 
+          class="text-xs font-bold text-yellow-900 bg-white border rounded px-1 w-full nodrag"
+          onblur={() => isEditingTitle = false}
+          onkeydown={(e) => e.key === 'Enter' && (isEditingTitle = false)}
+      />
+    {:else}
+      <span 
+        class="title text-yellow-900 cursor-text"
+        ondblclick={() => isEditingTitle = true}
+        title="Double click to rename"
+      >
+        {data.label}
+      </span>
+    {/if}
   </div>
   
   <div class="node-body">

@@ -1,0 +1,32 @@
+{"endpoints" :
+    [
+        {
+            "note" : "--- API: Get OBS Credentials ---",
+            "endpoint": "/api/obswss",
+            "return": 
+                {
+                    "IP": "string",
+                    "PORT": "Int",
+                    "PW": "string"
+                }    
+        },
+        {
+            "note" : "--- API: Generic File Save ---",
+            "endpoint": "/api/file/save",
+            "input" : { folder, filename, data },
+            "return": code 403 || 500  
+        },
+        {
+            "note" : "--- API: Generic File List ---",
+            "endpoint": "/api/file/list",
+            "input" : { folder },
+            "return": fs.readdirSync(targetDir).filter(f => f.endsWith('.json'));  
+        },
+        {
+            "note" : "--- API: Generic File Get ---",
+            "endpoint": "/api/file/get",
+            "input" : { folder, filename },
+            "return": parsed JSON
+        },
+    ]
+}

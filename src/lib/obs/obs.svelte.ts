@@ -85,7 +85,7 @@ class OBSManager {
             }
         });
 
-        this.ws.on('BroadcastCustomEvent', (data: any) => {
+        this.ws.on('BroadcastCustomEvent' as any, (data: any) => {
             const event = data.eventData;
             // Listen for broadcast discovery responses
             if (settings.discoveryMethod === 'broadcast' && event?.realm === 'flowNode' && event.type === 'definition') {
@@ -316,6 +316,24 @@ class OBSManager {
                 targetSource: sourceName,
                 variable,
                 value
+            }
+        });
+    }
+
+    /**
+     * Broadcasts a generic custom event to OBS.
+     * @param {string} eventName - The name of the event.
+     * @param {object} payload - The data payload.
+     */
+    async broadcastEvent(eventName: string, payload: object) {
+        if (!this.isConnected) return;
+        return this.ws.call('BroadcastCustomEvent', {
+            eventData: {
+                ...payload,
+                broadcastName: eventName,
+                // We add a specific realm or type if needed, but for generic
+                // listeners, the payload + broadcastName is usually enough.
+                realm: "flow-custom-event" 
             }
         });
     }

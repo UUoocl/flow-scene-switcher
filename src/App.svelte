@@ -29,12 +29,14 @@
   import ControlStream from './lib/nodes/actions/ControlStream.svelte';
   import SetInputSettings from './lib/nodes/actions/SetInputSettings.svelte';
   import BrowserSourceNode from './lib/nodes/obs/BrowserSourceNode.svelte';
+  import BroadcastEvent from './lib/nodes/obs/BroadcastEvent.svelte';
 
   // Basic Nodes
   import NumberNode from './lib/nodes/basic/NumberNode.svelte';
   import StringNode from './lib/nodes/basic/StringNode.svelte';
   import BooleanNode from './lib/nodes/basic/BooleanNode.svelte';
   import WatchNode from './lib/nodes/basic/WatchNode.svelte';
+  import ObjectNode from './lib/nodes/basic/ObjectNode.svelte';
 
   // Math Nodes
   import MathOperation from './lib/nodes/math/MathOperation.svelte';
@@ -56,11 +58,13 @@
     'obs/actions/set_input_settings': SetInputSettings,
 
     'obs/browser_source': BrowserSourceNode,
+    'obs/broadcast_event': BroadcastEvent,
 
     'basic/number': NumberNode,
     'basic/string': StringNode,
     'basic/boolean': BooleanNode,
     'basic/watch': WatchNode,
+    'basic/object': ObjectNode,
 
     'math/operation': MathOperation,
     'math/compare': Compare,
